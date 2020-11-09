@@ -41,6 +41,7 @@ namespace WebApplication3.Areas.DieuHanh.Controllers
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
+            
             return View();
         }
 

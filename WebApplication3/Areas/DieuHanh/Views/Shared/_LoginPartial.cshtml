@@ -10,14 +10,16 @@
             <li>
                 @Html.ActionLink("Hello " + LoginSatus.UserLogin + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
             </li>
-            <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+            <li>
+            @Html.ActionLink("Đăng xuất", "Login", "Login", routeValues: null, htmlAttributes: new { status = "Logout" })
+            </li>
         </ul>
     }
 }
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Đăng nhập", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        <li>@Html.ActionLink("Đăng nhập", "Login", "Login", routeValues: null, htmlAttributes: new { id = "logout" })</li>
     </ul>
 }
 
