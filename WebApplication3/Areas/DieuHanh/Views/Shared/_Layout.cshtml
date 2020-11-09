@@ -17,11 +17,9 @@
                     <span class="icon-bar"></span>
                 </button>
                 @Html.ActionLink("Grocery Home", "Index", "Home", new { area = "DieuHanh" }, new { @class = "navbar-brand" })
-                @Html.ActionLink("Đăng xuất", "Logout", "Login", new { area = "DieuHanh" }, new { @class = "navbar-right" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                </ul>
+                @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>

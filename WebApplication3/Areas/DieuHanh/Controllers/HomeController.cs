@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication3.Models;
+using WebApplication3.Areas.DieuHanh.Models;
 
 namespace WebApplication3.Areas.DieuHanh.Controllers
 {
@@ -16,7 +17,7 @@ namespace WebApplication3.Areas.DieuHanh.Controllers
             //{
             //    return View();
             //}
-            if (Models.LoginSatus.IsloginAdmin == true)
+            if (LoginSatus.IsloginAdmin == true)
             {
                 return View();
             }

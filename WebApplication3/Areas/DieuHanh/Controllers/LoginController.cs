@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Threading.Tasks;
 using WebApplication3.Areas.DieuHanh.Models;
 using WebApplication3.Models;
+using Microsoft.AspNet.Identity;
 
 namespace WebApplication3.Areas.DieuHanh.Controllers
 {
@@ -13,7 +14,6 @@ namespace WebApplication3.Areas.DieuHanh.Controllers
     {
 
         private readonly GroceryHomeEntities dB = new GroceryHomeEntities();
-        Models.LoginSatus loginStatus = new Models.LoginSatus();
 
         // GET: DieuHanh/Login
 
@@ -64,7 +64,8 @@ namespace WebApplication3.Areas.DieuHanh.Controllers
                             Response.Cookies["userName"].Value = model.UserName;
                             Response.Cookies["passWord"].Value = model.Password;
                         }
-                        Models.LoginSatus.IsloginAdmin = true;        
+                        LoginSatus.IsloginAdmin = true;
+                        LoginSatus.UserLogin = model.UserName;                  
                         //return View("Index", model);
                         return RedirectToAction("Index", "Home");
                     }
@@ -89,7 +90,7 @@ namespace WebApplication3.Areas.DieuHanh.Controllers
         {
             Response.Cookies["userName"].Value = null;
             Response.Cookies["passWord"].Value = null;
-            Models.LoginSatus.IsloginAdmin = false;
+            LoginSatus.IsloginAdmin = false;
             return View("Login");
         }
     }

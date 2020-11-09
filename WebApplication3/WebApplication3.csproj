@@ -271,6 +271,7 @@
       <DependentUpon>DBGroceryHome.edmx</DependentUpon>
     </Content>
     <Content Include="Areas\DieuHanh\Views\Home\Index.cshtml" />
+    <Content Include="Areas\DieuHanh\Views\Shared\_LoginPartial.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
