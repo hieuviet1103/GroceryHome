@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login</h2>
+<div class="login-page">
+    <div class="form">
+        @using (Html.BeginForm("Login", "Login", FormMethod.Post, new { @class = "form-horizontal login-form", role = "form" }))
+            {
+            @Html.AntiForgeryToken()
+            @Html.Hidden("returnUrl", (string)ViewBag.ReturnUrl)
+
+            <h4 style="font-size: 20pt;">Quản lý đơn hàng</h4>
+            <hr />
+                <div class="input-container">
+                    <i class="fa fa-user icon"></i>
+                    <input class="input-field" type="text" placeholder="UserName" name="UserName">
+                </div>
+                <div class="input-container">
+                    <i class="fa fa-key icon"></i>
+                    <input class="input-field" type="password" placeholder="Password" name="Password">
+                </div>
+                <div class="input-container">
+                    <i class="fa fa-user icon"></i>
+                            <input class="input-field" type="checkbox" name="Remember" /> <label>Ghi nhớ?</label>
+                    </div>
+                <button>Login</button>
+        }
+    </div>
+</div>
