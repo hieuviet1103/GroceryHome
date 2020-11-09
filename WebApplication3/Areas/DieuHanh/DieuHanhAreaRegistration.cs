@@ -19,6 +19,11 @@ namespace WebApplication3.Areas.DieuHanh
                 "DieuHanh/{controller}/{action}/{id}",
                 new { action = "Login", id = UrlParameter.Optional }
             );
+            context.MapRoute(
+            "DieuHanh_Login_default",
+            "DieuHanh/{controller}/{action}/{id}",
+            new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+);
         }
     }
 }

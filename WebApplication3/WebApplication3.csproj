@@ -197,6 +197,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\DieuHanh\Controllers\HomeController.cs" />
     <Compile Include="Areas\DieuHanh\Controllers\LoginController.cs" />
     <Compile Include="Areas\DieuHanh\DieuHanhAreaRegistration.cs" />
     <Compile Include="Areas\DieuHanh\Models\LoginSatus.cs" />
@@ -221,7 +222,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Areas\DieuHanh\Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -269,6 +270,7 @@
     <Content Include="DBGroceryHome.edmx.diagram">
       <DependentUpon>DBGroceryHome.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\DieuHanh\Views\Home\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

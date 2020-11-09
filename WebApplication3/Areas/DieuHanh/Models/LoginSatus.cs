@@ -7,9 +7,8 @@ namespace WebApplication3.Areas.DieuHanh.Models
 {
     public class LoginSatus
     {
-        public static bool IsloginAdmin { get; set; }
-        public string UserName = string.Empty;
-        public string PassWord = string.Empty;
+        public static bool IsloginAdmin = false;
+        public static string UserLogin = string.Empty;
 
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Threading.Tasks;
+using WebApplication3.Areas.DieuHanh.Models;
 using WebApplication3.Models;
 
 namespace WebApplication3.Areas.DieuHanh.Controllers
@@ -58,9 +59,14 @@ namespace WebApplication3.Areas.DieuHanh.Controllers
                 {
                     if (dB.tbl_User.Any(d => d.Password == model.Password))
                     {
-                        Response.Cookies["userName"].Value = model.UserName;
-                        Response.Cookies["passWord"].Value = model.Password;
-                        return View("Index", model);
+                        if (model.RememberMe == true)
+                        {
+                            Response.Cookies["userName"].Value = model.UserName;
+                            Response.Cookies["passWord"].Value = model.Password;
+                        }
+                        Models.LoginSatus.IsloginAdmin = true;        
+                        //return View("Index", model);
+                        return RedirectToAction("Index", "Home");
                     }
                     else
                     {
@@ -83,6 +89,7 @@ namespace WebApplication3.Areas.DieuHanh.Controllers
         {
             Response.Cookies["userName"].Value = null;
             Response.Cookies["passWord"].Value = null;
+            Models.LoginSatus.IsloginAdmin = false;
             return View("Login");
         }
     }
