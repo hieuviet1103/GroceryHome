@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace WebApplication3.Areas.DieuHanh.Controllers
+namespace GroceryHome.Areas.DieuHanh.Controllers
 {
     public class QuanLyDonHangController : Controller
     {

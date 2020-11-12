@@ -4,11 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Threading.Tasks;
-using WebApplication3.Areas.DieuHanh.Models;
-using WebApplication3.Models;
+using GroceryHome.Areas.DieuHanh.Models;
+using GroceryHome.Models;
 using Microsoft.AspNet.Identity;
 
-namespace WebApplication3.Areas.DieuHanh.Controllers
+namespace GroceryHome.Areas.DieuHanh.Controllers
 {
     public class LoginController : Controller
     {

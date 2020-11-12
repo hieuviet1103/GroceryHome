@@ -7,8 +7,8 @@ using System.Web.Mvc;
 using System.Configuration;
 using Microsoft.AspNet.Identity;
 using System.Threading.Tasks;
-using WebApplication3.Areas.DieuHanh.Models;
-namespace WebApplication3.Areas.DieuHanh.Controllers
+using GroceryHome.Areas.DieuHanh.Models;
+namespace GroceryHome.Areas.DieuHanh.Controllers
 {
     public class QuanLySanPhamController : Controller
     {
@@ -35,6 +35,7 @@ namespace WebApplication3.Areas.DieuHanh.Controllers
         {
             if (Request.HttpMethod == "POST")
             {
+
                 if (model.ImageFile != null)
                 {
                     string fileName = Path.GetFileNameWithoutExtension(model.ImageFile.FileName);
@@ -52,15 +53,15 @@ namespace WebApplication3.Areas.DieuHanh.Controllers
                 dB.tbl_SanPham.Add(addSanPham);
                 dB.SaveChanges();
 
-            }
+            }            
             return View();
         }
 
-
-
-        public ActionResult CapNhatSP()
+        public ActionResult CapNhatSP(string id)
         {
-            return View();
+            int Id = Convert.ToInt32(id);
+            var model = dB.tbl_SanPham.Find(Id);
+            return View(model);
         }
     }
 }

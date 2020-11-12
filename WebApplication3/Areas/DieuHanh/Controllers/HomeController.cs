@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using WebApplication3.Models;
-using WebApplication3.Areas.DieuHanh.Models;
+using GroceryHome.Models;
+using GroceryHome.Areas.DieuHanh.Models;
 
-namespace WebApplication3.Areas.DieuHanh.Controllers
+namespace GroceryHome.Areas.DieuHanh.Controllers
 {
     public class HomeController : Controller
     {

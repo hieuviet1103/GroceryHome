@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebApplication3
+namespace GroceryHome
 {
     using System;
     using System.Collections.Generic;

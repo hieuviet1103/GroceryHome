@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace WebApplication3.Areas.DieuHanh
+namespace GroceryHome.Areas.DieuHanh
 {
     public class DieuHanhAreaRegistration : AreaRegistration 
     {
@@ -19,7 +19,14 @@ namespace WebApplication3.Areas.DieuHanh
                 "DieuHanh/{controller}/{action}/{id}",
                 new { action = "Login", id = UrlParameter.Optional }
             );
-           
+
+            context.MapRoute(
+               "Cap-Nhat-SanPham",
+               "Cap-Nhat-SanPham",
+               new { controler = "QuanLySanPham", action = "CapNhatSP", id = UrlParameter.Optional },
+               new[] { "GroceryHome.Areas.DieuHanh.Controllers" }
+               );
+
         }
     }
 }

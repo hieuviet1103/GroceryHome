@@ -6,9 +6,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using WebApplication3.Models;
+using GroceryHome.Models;
 
-namespace WebApplication3.Controllers
+namespace GroceryHome.Controllers
 {
     [Authorize]
     public class ManageController : Controller

@@ -24,8 +24,9 @@
                             <th class="text-center">Tên sản phẩm</th>
                             <th class="text-center">Loại sản phẩm</th>
                             <th class="text-center">Ảnh minh họa</th>
-                            <th class="text-center">Mô tả</thclass="text-center">
+                            <th class="text-center">Mô tả</th class="text-center">
                             <th class="text-right">Giá</th>
+                            <th>Cập nhật</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -44,11 +45,14 @@
                                     }
                                     @LoaiSP
                                     </td>
-                                    <td style="width:auto;">
-                                        <img src="~/Images/Products/@item.Hinh" height="50%" width="50%" />
+                                    <td width="250px" height="100px">
+                                        <img src="~/Images/Products/@item.Hinh" style="width:inherit" />
                                     </td>
                                     <td>@item.Mota</td>
                                     <td class="text-right">@string.Format("{0:#,000}đ",item.Gia)</td>
+                                    <td>
+                                        <a href="@Url.Action("CapNhatSP", "QuanLySanPham", new { id = item.Id.ToString() })">Cập nhật</a>
+                                    </td>
                                 </tr>
                                 STT++;
                             }

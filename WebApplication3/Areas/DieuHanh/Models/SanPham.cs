@@ -5,7 +5,7 @@ using System.Web;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace WebApplication3.Areas.DieuHanh.Models
+namespace GroceryHome.Areas.DieuHanh.Models
 {
     public class SanPham
     {
@@ -13,14 +13,15 @@ namespace WebApplication3.Areas.DieuHanh.Models
         {   
                      
         }
-
+        [DisplayName("Tên sản phẩm")]
         public string TenSP { get; set; }
+        [DisplayName("Loại sản phẩm")]
         public int LoaiSP { get; set; }
+        [DisplayName("Mô tả")]
         public string Mota { get; set; }
+        [DisplayName("Giá")]
         public decimal Gia { get; set; }
-        public string Hinh { get; set; }
-
-        [DisplayName("Upload File")]
+        [DisplayName("Ảnh minh họa")]
         public string ImagePath { get; set; }
 
         public HttpPostedFileBase ImageFile { get; set; }
