@@ -8,10 +8,10 @@
 
         <ul class="nav navbar-nav navbar-right">
             <li>
-                @Html.ActionLink("Hello " + LoginSatus.UserLogin + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+                @Html.ActionLink("Hello " + LoginSatus.UserLogin + "!", "Index", "Login", routeValues: null, htmlAttributes: new { title = "Manage" })
             </li>
             <li>
-            @Html.ActionLink("Đăng xuất", "Login", "Login", routeValues: null, htmlAttributes: new { status = "Logout" })
+            @Html.ActionLink("Đăng xuất", "Logout", "Login", routeValues: null, htmlAttributes: new { status = "Logout" })
             </li>
         </ul>
     }

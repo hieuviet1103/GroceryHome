@@ -1,0 +1,63 @@
+﻿@model List<tbl_SanPham>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/DieuHanh/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Sản phẩm</h2>
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Danh sách sản phẩm hiện tại</h3>
+                <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <table id="mytable" class="table table-bordered table-striped">
+                    <thead>
+                        <tr style="background-color:#1b7ab8;color:white">
+                            <th class="text-center" width="40px">STT</th>
+                            <th class="text-center">Tên sản phẩm</th>
+                            <th class="text-center">Loại sản phẩm</th>
+                            <th class="text-center">Ảnh minh họa</th>
+                            <th class="text-center">Mô tả</thclass="text-center">
+                            <th class="text-right">Giá</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @{ var STT = 1; }
+                        @{ 
+                            var model = Model;
+                            var db = new GroceryHomeEntities();
+                            foreach (var item in model)
+                            {
+                                <tr class="clickable-row" onclick="RowClick(this)">
+                                    <td>@STT</td>
+                                    <td>@item.TenSP</td>
+                                    <td width="100px">
+                                    @{ 
+                                        var LoaiSP = db.tbl_LoaiSanPham.Find(item.LoaiSP).LoaiSP;
+                                    }
+                                    @LoaiSP
+                                    </td>
+                                    <td style="width:auto;">
+                                        <img src="~/Images/Products/@item.Hinh" height="50%" width="50%" />
+                                    </td>
+                                    <td>@item.Mota</td>
+                                    <td class="text-right">@string.Format("{0:#,000}đ",item.Gia)</td>
+                                </tr>
+                                STT++;
+                            }
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+

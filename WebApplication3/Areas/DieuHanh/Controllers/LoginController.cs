@@ -28,12 +28,13 @@ namespace WebApplication3.Areas.DieuHanh.Controllers
         //    }
         //    return View();
         //}
-        public ActionResult Index(LoginViewModel model)
+
+
+        public async Task<ActionResult> Index(LoginViewModel model)
         {
-            if (!string.IsNullOrEmpty(Request["userName"]) && !string.IsNullOrEmpty(Request["passWord"]))
+            if (!string.IsNullOrEmpty(Session["CurrentUser"].ToString()))
             {
-                model.UserName = Request["userName"];
-                model.Password = Request["passWord"];
+                model.UserName = Session["CurrentUser"].ToString();
                 return View(model);
             }
             return View("Login");
@@ -41,14 +42,14 @@ namespace WebApplication3.Areas.DieuHanh.Controllers
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
-            
+
             return View();
         }
 
         [HttpPost]
         [AllowAnonymous]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
-        { 
+        {
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -60,13 +61,9 @@ namespace WebApplication3.Areas.DieuHanh.Controllers
                 {
                     if (dB.tbl_User.Any(d => d.Password == model.Password))
                     {
-                        if (model.RememberMe == true)
-                        {
-                            Response.Cookies["userName"].Value = model.UserName;
-                            Response.Cookies["passWord"].Value = model.Password;
-                        }
+                        Session["CurrentUser"] = model.UserName;
                         LoginSatus.IsloginAdmin = true;
-                        LoginSatus.UserLogin = model.UserName;                  
+                        LoginSatus.UserLogin = model.UserName;
                         //return View("Index", model);
                         return RedirectToAction("Index", "Home");
                     }
@@ -89,8 +86,7 @@ namespace WebApplication3.Areas.DieuHanh.Controllers
 
         public ActionResult Logout()
         {
-            Response.Cookies["userName"].Value = null;
-            Response.Cookies["passWord"].Value = null;
+            Session["CurrentUser"] = null;
             LoginSatus.IsloginAdmin = false;
             return View("Login");
         }

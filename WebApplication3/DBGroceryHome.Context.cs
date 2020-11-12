@@ -27,5 +27,7 @@ namespace WebApplication3
     
         public virtual DbSet<tbl_User> tbl_User { get; set; }
         public virtual DbSet<tbl_Product> tbl_Product { get; set; }
+        public virtual DbSet<tbl_LoaiSanPham> tbl_LoaiSanPham { get; set; }
+        public virtual DbSet<tbl_SanPham> tbl_SanPham { get; set; }
     }
 }

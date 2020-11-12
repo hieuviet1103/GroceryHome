@@ -12,7 +12,7 @@ namespace WebApplication3
     using System;
     using System.Collections.Generic;
     
-    public partial class tbl_Product
+    public partial class tbl_SanPham
     {
         public long Id { get; set; }
         public string TenSP { get; set; }
@@ -20,5 +20,7 @@ namespace WebApplication3
         public string Mota { get; set; }
         public Nullable<decimal> Gia { get; set; }
         public string Hinh { get; set; }
+    
+        public virtual tbl_LoaiSanPham tbl_LoaiSanPham { get; set; }
     }
 }
