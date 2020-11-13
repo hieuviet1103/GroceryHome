@@ -13,6 +13,16 @@ namespace GroceryHome.Controllers
             return View();
         }
 
+        public ActionResult GioHang()
+        {
+            return View();
+        }
+
+        public ActionResult DonHang()
+        {
+
+            return View();
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

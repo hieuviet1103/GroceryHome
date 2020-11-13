@@ -1,0 +1,64 @@
+/* Large Devices, Wide Screens */
+@media (min-width: 1200px) {
+}
+@media only screen and (max-width : 1300px) {
+
+}
+@media only screen and (max-width : 1024px) {
+	.login-page {
+		padding-top: 20%;
+	}
+	.n3-news img.pic-news-l {
+	    height: 150px;
+	}
+}
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px) {
+    
+}
+@media only screen and (min-width : 769px) {
+   
+}
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px) {
+	.login-page {
+	    padding-top: 25%;
+	}
+}
+@media only screen and (max-width : 767px) and (min-width : 481px) {
+	
+}
+/* Extra Small Devices, Phones */ 
+@media only screen and (max-width : 480px) {
+	.login-page {
+	    padding-top: 45%;
+	}
+	.login-page .form {
+	    max-width: 290px;
+	    padding: 15px;
+	}
+	.ldpg img.img-ss {
+		width: 100%;
+		height: 110px;
+	}
+	.n3-news img.pic-news-l {
+	    height: 190px;
+	}
+	.n3-news .mg-bot {
+	    margin-bottom: 15px;
+	}
+}
+
+/* Custom, iPhone Retina */ 
+@media only screen and (max-width : 414px) {
+
+}
+@media only screen and (max-width : 375px) {
+
+}
+@media only screen and (max-width : 360px) {
+
+}
+@media only screen and (max-width : 320px) {
+
+}

@@ -60,6 +60,10 @@ namespace GroceryHome.Areas.DieuHanh.Controllers
                 {
                     if (dB.tbl_User.Any(d => d.Password == model.Password))
                     {
+                        if (model.RememberMe == true)
+                        {
+                            Response.Cookies["CurrentUser"].Value = model.UserName;
+                        }
                         Session["CurrentUser"] = model.UserName;
                         LoginSatus.IsloginAdmin = true;
                         LoginSatus.UserLogin = model.UserName;

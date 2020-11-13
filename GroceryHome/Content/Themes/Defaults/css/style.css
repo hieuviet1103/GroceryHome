@@ -1,0 +1,289 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+body {
+	font-family: "Roboto",Helvetica,Arial,sans-serif;
+	font-size: 14px;
+    min-width: 320px;
+}
+.clear {
+    clear: both;
+}
+strong { font-weight: bold; }
+.hidden {
+    display: none;
+}
+.mauchudao {
+	color: #fc6600 !important;
+}
+.bg-mauchudao {
+    background: #fc6600 !important;
+}
+.mg-bot5 {
+    margin-bottom: 5px;
+}
+.mg-bot10 {
+    margin-bottom: 10px;
+}
+.mg-bot15 {
+	margin-bottom: 15px;
+}
+.mg-bot20 {
+    margin-bottom: 20px;
+}
+.mg-bot25 {
+    margin-bottom: 25px;
+}
+.mg-bot30 {
+    margin-bottom: 30px;
+}
+.mg-bot35 {
+    margin-bottom: 35px;
+}
+.pad15 {
+	padding: 15px;
+}
+.pad10 {
+	padding: 10px;
+}
+.f-left { float: left; }
+.f-right { float: right; }
+.pos-relative {
+	position: relative;
+}
+a {
+    color: #333;
+}
+a:hover {
+	text-decoration: none;
+}
+/* login */
+.login-page {
+  background: #337ab7; /* fallback for old browsers */
+  background: -webkit-linear-gradient(right, #337ab7, #31708f);
+  background: -moz-linear-gradient(right, #337ab7, #31708f);
+  background: -o-linear-gradient(right, #337ab7, #31708f);
+  background: linear-gradient(to left, #337ab7, #31708f);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;      
+  width: 100%;
+  height: 100vh;
+  margin: auto;
+  padding-top: 15%;
+}
+.login-page .form {
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  max-width: 360px;
+  margin: 0 auto 100px;
+  padding: 45px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+.login-page .form input {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+.login-page .form button {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #3279b2;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+.login-page .form button:hover,.form button:active,.form button:focus {
+  background: #316f8f;
+}
+.login-page .form .message {
+  margin: 15px 0 0;
+  color: #b3b3b3;
+  font-size: 12px;
+}
+.login-page .form .message a {
+  color: #337ab7;
+  text-decoration: none;
+}
+.login-page .form .register-form {
+  display: none;
+}
+.login-page .container {
+  position: relative;
+  z-index: 1;
+  max-width: 300px;
+  margin: 0 auto;
+}
+.login-page .container:before,.login-page .container:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.login-page .container .info {
+  margin: 50px auto;
+  text-align: center;
+}
+.login-page .container .info h1 {
+  margin: 0 0 15px;
+  padding: 0;
+  font-size: 36px;
+  font-weight: 300;
+  color: #1a1a1a;
+}
+.login-page .container .info span {
+  color: #4d4d4d;
+  font-size: 12px;
+}
+.login-page .container .info span a {
+  color: #000000;
+  text-decoration: none;
+}
+.login-page .container .info span .fa {
+  color: #EF3B3A;
+}
+.login-page .input-container {
+  display: flex;
+  width: 100%;
+  background: #f2f2f2;
+  margin-bottom: 15px;
+}
+.login-page .icon {
+  padding: 15px 0px 15px 15px;
+  color: #717171;
+  max-height: 47px;
+  text-align: center;
+}
+.login-page .input-field {
+  width: 100%;
+  padding: 10px;
+  outline: none;
+}
+.input-field:focus {
+  border: 2px solid dodgerblue;
+}
+/* login */
+
+/* landing-page */
+.ldpg {
+	margin-top: 30px;
+	text-align: left; 
+}
+.ldpg .title-ldpg {
+	 font-size: 22px;
+    font-weight: bold;
+    line-height: 25px;
+    color: #0075da;
+}
+.n3-news .title {
+    text-align: center;
+    font-size: 22px;
+    font-weight: 500;
+    line-height: 25px;
+    color: #fc6600;
+    text-shadow: 1px 1px 2px #ffba8a;
+}
+.n3-news .frame-news .frame-top {
+    margin-bottom: 10px;
+    border-bottom: 1px dashed #ccc;
+    padding-bottom: 10px;
+}
+.n3-news .frame-news .frame-top .news-title-l a {
+    font-size: 20px;
+    line-height: 22px;
+    color: #212121;
+    font-weight: 500;
+}
+.n3-news .frame-news .frame-top .news-title-l a:hover {
+    color: #0075da;
+}
+.n3-news .frame-news .frame-top .news-title-l {
+    margin-bottom: 8px;
+}
+.n3-news .frame-news .frame-top .news-title-l a.cut-name {
+    height: 24px;
+    width: 100%;
+}
+.n3-news .frame-news .frame-top .frame-date {
+    color: #7a7a7a;
+}
+.n3-news .frame-date .date {
+    margin-left: 7px;
+    padding-top: 2px;
+}
+.n3-news .frame-news .frame-bot .des-content {
+    line-height: 18px;
+    text-align: justify;
+    margin-bottom: 7px;
+    color: #888;
+}
+.n3-news .frame-news .frame-bot a.view_more {
+    color: #0075da;
+}
+.n3-news .frame-news .frame-bot .des-content.cut-content {
+    max-height: 80px;
+    width: 100%;
+}
+.n3-news img.pic-news-l {
+    height: 165px;
+    width: 100%;
+    object-fit: cover;
+}
+/* landing-page */
+
