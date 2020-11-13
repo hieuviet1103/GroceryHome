@@ -27,6 +27,7 @@
                             <th class="text-center">Mô tả</th class="text-center">
                             <th class="text-right">Giá</th>
                             <th>Cập nhật</th>
+                            <th>Xóa</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -34,7 +35,7 @@
                         @{ 
                             var model = Model;
                             var db = new GroceryHomeEntities();
-                            foreach (var item in model)
+                            foreach (var item in  model)
                             {
                                 <tr class="clickable-row" onclick="RowClick(this)">
                                     <td>@STT</td>
@@ -52,6 +53,9 @@
                                     <td class="text-right">@string.Format("{0:#,000}đ",item.Gia)</td>
                                     <td>
                                         <a href="@Url.Action("CapNhatSP", "QuanLySanPham", new { id = item.Id.ToString() })">Cập nhật</a>
+                                    </td>
+                                    <td>
+                                        <a target="_blank" href="@Url.Action("XoaSP", "QuanLySanPham", new { id = item.Id.ToString() })">Xoá</a>
                                     </td>
                                 </tr>
                                 STT++;

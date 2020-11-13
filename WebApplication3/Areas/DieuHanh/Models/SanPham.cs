@@ -23,7 +23,7 @@ namespace GroceryHome.Areas.DieuHanh.Models
         public decimal Gia { get; set; }
         [DisplayName("Ảnh minh họa")]
         public string ImagePath { get; set; }
-
+        public string FileName { get; set; }
         public HttpPostedFileBase ImageFile { get; set; }
 
     }
