@@ -1,0 +1,56 @@
+﻿body {
+}
+.product{
+    background-color:#ffffff;height:320px;
+    padding:10px;
+     margin:0,10px,10px,0;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.newProduct{
+
+}
+
+.imgProduct{
+    image-orientation:from-image;
+    align-content:center;
+    align-items:center;
+    max-width:210px;
+    max-height:160px;
+}
+.tenSP{
+    font-size:18px;
+}
+.gia{
+    font-size:15px;
+}
+.conlai{
+    font-size:15px;
+}
+.actionProduct{
+    text-align:center;
+    font-size:15px;
+}
+.product td{
+    height:10px;
+}
+
+.cls{
+    margin:10px,0,0,10px;
+}
+b{
+    border:double;
+    border-radius:10px;
+    background-color:#ff0000;
+    color:#ffffff;
+    padding:5px;
+}
+.left{
+    text-align:left;
+}
+.right{
+    text-align:right;
+}
+.center{
+    text-align:center;
+}

@@ -20,6 +20,8 @@ namespace GroceryHome
         public string Mota { get; set; }
         public Nullable<decimal> Gia { get; set; }
         public string Hinh { get; set; }
+        public Nullable<int> SoLuongConLai { get; set; }
+        public bool IsDelete { get; set; }
     
         public virtual tbl_LoaiSanPham tbl_LoaiSanPham { get; set; }
     }

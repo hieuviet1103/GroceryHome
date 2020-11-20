@@ -13,10 +13,13 @@ namespace GroceryHome.Areas.DieuHanh.Models
         {   
                      
         }
+        public int Id { get; set; }
         [DisplayName("Tên sản phẩm")]
         public string TenSP { get; set; }
         [DisplayName("Loại sản phẩm")]
         public int LoaiSP { get; set; }
+        public string LoaiSPMoi { get; set; }
+
         [DisplayName("Mô tả")]
         public string Mota { get; set; }
         [DisplayName("Giá")]

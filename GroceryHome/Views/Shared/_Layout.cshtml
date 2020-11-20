@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Grocery Home cửa hàng trực tuyến</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -22,43 +22,29 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Trang chủ", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Giỏ hàng", "GioHang", "Home")</li>
+                    <li>@Html.ActionLink("Đơn hàng", "DonHang", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
-    @{
-        var dB = new GroceryHomeEntities();
-        var model = dB.tbl_LoaiSanPham.Where(d => d.Id != 0).ToList();
-
-    }
-    <div class="container" style="background-color:aliceblue;">
+    <div class="container">
         <div class="row">
-            <div class="col-lg-3 ">
-                <div style="background-color:#1733a4; color: white;
-                            border-radius:5px; font-weight:bold;
-                            margin-top:50px; padding:20px">
-                    <h4 style="background-color:#ff0000; ">Danh mục sản phẩm</h4>
-                    <ul>                        
-                        @{ foreach (var item in model)
-                            {
-                                <li style="padding:5px; color:white">
-                                    <a href="#@item.Id">@item.LoaiSP</a>
-                                </li>
-                            }}
-                    </ul>
-                </div>
-            </div>
-            <div class="col-lg-offset-3" style="height:1000px">
+            @*<div class="col-lg-3">
+              @Html.Partial("_DanhMucSanPham")
+            </div>*@
+            @*<div class="col-lg-offset-3" style="height:1000px">
                 @RenderBody()
-            </div>
-
-
+            </div>*@  
+            @RenderBody()          
         </div>
-        <hr />
+        <hr />        
     </div>
+
+    <footer class="panel-footer navbar-fixed-bottom text-center">
+        @DateTime.Now.Year - Grocery Home by Hiếu Nguyễn
+    </footer>
     @*@RenderBody()*@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

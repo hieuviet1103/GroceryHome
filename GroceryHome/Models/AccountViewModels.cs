@@ -46,31 +46,36 @@ namespace GroceryHome.Models
         public string Email { get; set; }
     }
 
-    public class LoginViewModel
+    public class CustomerLoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
-        [EmailAddress]
-        public string Email { get; set; }
+        [DataType(DataType.Text)]
+        [Display(Name = "UserName")]
+        public string UserName { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
 
-        [Display(Name = "Remember me?")]
+        [Display(Name = "Remember")]
         public bool RememberMe { get; set; }
+
+        public string LoginError { get; set; }
     }
 
-    public class RegisterViewModel
+    public class CustomerRegisterViewModel
     {
         [Required]
-        [EmailAddress]
-        [Display(Name = "Email")]
-        public string Email { get; set; }
+        [Display(Name = "Họ và tên")]
+        public string FullName { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [Display(Name = "Tên tài khoản")]
+        public string UserName { get; set; }
+
+        [Required]
+        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 4)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
@@ -79,6 +84,11 @@ namespace GroceryHome.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        public string PhoneNumber { get; set; }
+        public string DiaChi { get; set; }
+
+        public string Error { get; set; }
     }
 
     public class ResetPasswordViewModel
@@ -109,4 +119,6 @@ namespace GroceryHome.Models
         [Display(Name = "Email")]
         public string Email { get; set; }
     }
+
+
 }

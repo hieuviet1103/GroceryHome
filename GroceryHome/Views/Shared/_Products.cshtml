@@ -1,0 +1,28 @@
+﻿@model tbl_SanPham
+@{ var item = Model;}
+<div class="col-lg-4" style="margin-bottom:20px">
+    <div class="product">
+        <table width="100%">
+            <tr>
+                <td colspan="2">
+                    <img class="imgProduct" src="~/Images/Products/@item.Hinh" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <label class="tenSP">@item.TenSP</label>
+                </td>
+            </tr>
+            <tr>
+
+                <td colspan="2">
+                    <i class="gia">Giá: @string.Format("{0:#,000}đ", item.Gia)</i>
+                </td>
+            </tr>
+            <tr>
+                <td class="left"><a class="actionProduct" href="#newSP" onclick="">Chi tiết</a></td>
+                <td class="right"><a class="actionProduct" href="#newSP" onclick="">Thêm vào giỏ</a></td>
+            </tr>
+        </table>
+    </div>
+</div>

@@ -1,31 +1,169 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@using GroceryHome.Models
+@model List<tbl_SanPham>
+
+@{
+    ViewBag.Title = "Trang chủ";
+
+    var models = Model;
 }
+<!– Latest compiled and minified CSS –>
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 
+<!– Optional theme –>
+
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+
+<!– Latest compiled and minified JavaScript –>
+
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+@Styles.Render("~/Content/Product/products.css")
+
+<script>
+    if (@Session["IsAddSanPham"] != null) {
+        alert("ThongBao");
+    }
+</script>
 <div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    <div class="col-lg-3">
+        @Html.Partial("_DanhMucSanPham")
     </div>
 </div>
+<div class="col-lg-offset-3" style="height:1000px">
+    <div class="jumbotron newProduct">
+        <fieldset>
+            <legend id="newSP"></legend>
+            <b style="border:double">Sản phẩm mới</b>
+            <div class="newProduct">
+                <div class="row">
+                    @{
+                        var modelsNew = models.Take(3);
+                        foreach (var item in modelsNew)
+                        {
+                            <div class="col-lg-4" style="margin-bottom:20px">
+                                <div class="product">
+                                    <table width="100%">
+                                        <tr>
+                                            <td colspan="2">
+                                                <img class="imgProduct" src="~/Images/Products/@item.Hinh" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                <label class="tenSP">@item.TenSP</label>
+                                            </td>
+                                        </tr>
+                                        <tr>
+
+                                            <td>
+                                                <i class="gia">Giá: @string.Format("{0:#,000}đ", item.Gia)</i>
+                                            </td>
+                                            <td class="right">
+                                                <i class="gia">Còn: @item.SoLuongConLai</i>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="left"><a class="actionProduct" href="#" onclick="DetailProduct()">Chi tiết</a></td>
+                                            <td class="right"><a class="actionProduct" href="#" onclick="AddProductToCart(@item.Id)">Thêm vào giỏ</a></td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+        </fieldset>
+    </div>
+
+    @{
+        GroceryHomeEntities dB = new GroceryHomeEntities();
+        var listLoaiSP = dB.tbl_LoaiSanPham.Where(d => d.Id != 0).ToList();
+        foreach (var item in listLoaiSP)
+        {
+             if (dB.tbl_SanPham.Any(d => d.LoaiSP == item.Id))
+                {
+
+
+            <div id="@item.Id" class="jumbotron listProduct">
+                <fieldset>
+                    <legend id="LoaiSP_@item.Id">Grocery Home</legend>
+                    <b style="border:double; border-radius:10px;">@item.LoaiSP</b>
+                    <div class="newProduct">
+                        <div class="row">
+                            @{
+                                var modelLoaiSP = models.Where(d => d.LoaiSP == item.Id).ToList();
+                                foreach (var itemLoaiSP in modelLoaiSP)
+                                {
+                                    <div class="col-lg-4" style="margin-bottom:20px">
+                                        <div class="product">
+                                            <table width="100%">
+                                                <tr>
+                                                    <td colspan="2">
+                                                        <img class="imgProduct" src="~/Images/Products/@itemLoaiSP.Hinh" />
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td colspan="2">
+                                                        <label class="tenSP">@itemLoaiSP.TenSP</label>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <i class="gia">Giá: @string.Format("{0:#,000}đ", itemLoaiSP.Gia)</i>
+                                                    </td>
+                                                    <td  class="right">
+                                                        <i class="gia">Còn: @itemLoaiSP.SoLuongConLai</i>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="left"><a class="actionProduct" href="#" onclick="DetailProduct()">Chi tiết</a></td>
+                                                    <td class="right"><a class="actionProduct" href="#LoaiSP_@item.LoaiSP" onclick="AddProductToCart(@item.Id)">Thêm vào giỏ</a></td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        </div>
+
+                    </div>
+                </fieldset>
+            </div>
+                                    }
+                                }
+                   
+    }
+
+</div>
+
+<script type="text/javascript">
+    function DetailProduct(id) {
+        alert("Chức năng chưa hoàn thành. id: " + id);
+    }
+    function AddProductToCart(id){
+        var Count = prompt("Số lượng đặt:", "1");
+        if (Count == null || Count == "" || Count <= 0) {
+            alert("Hủy thêm vào giỏ")
+        } else {
+            var count = Count;
+            $.ajax({
+                url: '@Url.Action("AddSpToGioHang","Home")',
+                data: { id: id,
+                        count : count
+                        },
+                success: function (data) {
+                    alert("Thêm sản phẩm vào giỏ hàng");
+
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    //some errror, some show err msg to user and log the error
+                    alert("Lỗi không thể thêm sản phẩm");
+
+                }
+
+            });
+        }
+    }
+</script>

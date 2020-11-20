@@ -26,8 +26,11 @@ namespace GroceryHome
         }
     
         public virtual DbSet<tbl_LoaiSanPham> tbl_LoaiSanPham { get; set; }
-        public virtual DbSet<tbl_Product> tbl_Product { get; set; }
         public virtual DbSet<tbl_SanPham> tbl_SanPham { get; set; }
         public virtual DbSet<tbl_User> tbl_User { get; set; }
+        public virtual DbSet<tbl_GioHang> tbl_GioHang { get; set; }
+        public virtual DbSet<tbl_KhachHang> tbl_KhachHang { get; set; }
+        public virtual DbSet<tbl_GioHang_SanPham> tbl_GioHang_SanPham { get; set; }
+        public virtual DbSet<tbl_DatHang> tbl_DatHang { get; set; }
     }
 }

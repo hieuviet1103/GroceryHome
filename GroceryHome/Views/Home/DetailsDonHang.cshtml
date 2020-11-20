@@ -1,0 +1,40 @@
+﻿@model List<tbl_GioHang_SanPham>
+    @{
+        ViewBag.Title = "Chi tiết đơn";
+        Layout = "~/Views/Shared/_Layout.cshtml";
+        var models = Model;
+    }
+
+    <h2>DetailsDonHang</h2>
+
+    <div class="box-body">
+        <table id="mytable" class="table table-bordered table-striped">
+            <thead>
+                <tr style="background-color:#1b7ab8;color:white">
+                    <th class="text-center" width="40px">STT</th>
+                    <th class="text-center">Tên sản phẩm</th>
+                    <th class="text-center">Số lượng</th>
+                    <th class="text-center">Đơn giá</th>
+                    <th class="text-center">Tổng tiền</th>
+                    <th class="text-center">Ngày thêm</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @{ var STT = 1;}
+                @{ foreach (var item in models)
+                    {
+                        <tr>
+                            <td>@STT</td>
+                            <td>@item.TenSP</td>
+                            <td>@item.SoLuong</td>
+                            <td>@item.DonGia</td>
+                            <td>@item.ThanhTien</td>
+                            <td>@item.NgayThem</td>
+                        </tr>
+                    }
+                  }
+            </tbody>
+        </table>
+    </div>
+

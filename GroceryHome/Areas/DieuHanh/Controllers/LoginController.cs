@@ -31,9 +31,14 @@ namespace GroceryHome.Areas.DieuHanh.Controllers
 
         public async Task<ActionResult> Index(LoginViewModel model)
         {
-            if (!string.IsNullOrEmpty(Session["CurrentUser"].ToString()))
+            if (!string.IsNullOrEmpty(Session["CurrentUser"].ToString())|| !string.IsNullOrEmpty(Request.Cookies["CurrentUser"].Value))
             {
-                model.UserName = Session["CurrentUser"].ToString();
+                if (!string.IsNullOrEmpty(Request.Cookies["CurrentUser"].Value))
+                {
+                    Session["CurrentUser"] = Request.Cookies["CurrentUser"].Value;                    
+                }
+                LoginSatus.UserLogin = model.UserName = Session["CurrentUser"].ToString();
+                LoginSatus.IsloginAdmin = true;                
                 return View(model);
             }
             return View("Login");
@@ -89,6 +94,7 @@ namespace GroceryHome.Areas.DieuHanh.Controllers
 
         public ActionResult Logout()
         {
+            Response.Cookies["CurrentUser"].Value = null;
             Session["CurrentUser"] = null;
             LoginSatus.IsloginAdmin = false;
             return View("Login");

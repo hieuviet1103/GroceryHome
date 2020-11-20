@@ -4,24 +4,64 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="GroceryHomeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="GroceryHomeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbl_DatHang">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="IdGioHang" Type="int" Nullable="false" />
+          <Property Name="IdKhachHang" Type="int" Nullable="false" />
+          <Property Name="TenKhachHang" Type="nvarchar(max)" />
+          <Property Name="DiaChi" Type="nvarchar(max)" />
+          <Property Name="Phone" Type="nchar" MaxLength="10" />
+          <Property Name="NgayDatHang" Type="datetime" />
+          <Property Name="TongHoaDon" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Status" Type="int" Nullable="false" />
+          <Property Name="NgayXacNhan" Type="datetime" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tbl_GioHang">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdKhachHang" Type="int" Nullable="false" />
+          <Property Name="NgayTao" Type="datetime" />
+          <Property Name="IsDelete" Type="bit" />
+          <Property Name="IsComplete" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbl_GioHang_SanPham">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdSanPham" Type="int" Nullable="false" />
+          <Property Name="IdGioHang" Type="int" Nullable="false" />
+          <Property Name="TenSP" Type="nvarchar(max)" />
+          <Property Name="SoLuong" Type="int" />
+          <Property Name="DonGia" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="ThanhTien" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="NgayThem" Type="datetime" />
+          <Property Name="IsDelete" Type="int" />
+        </EntityType>
+        <EntityType Name="tbl_KhachHang">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nchar" MaxLength="20" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="50" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="10" />
+          <Property Name="DiaChi" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="tbl_LoaiSanPham">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="LoaiSP" Type="nvarchar" MaxLength="50" />
-        </EntityType>
-        <EntityType Name="tbl_Product">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="TenSP" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="LoaiSP" Type="int" Nullable="false" />
-          <Property Name="Mota" Type="nvarchar(max)" />
-          <Property Name="Gia" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="Hinh" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="tbl_SanPham">
           <Key>
@@ -33,6 +73,8 @@
           <Property Name="Mota" Type="nvarchar(max)" />
           <Property Name="Gia" Type="decimal" Precision="18" Scale="0" />
           <Property Name="Hinh" Type="nvarchar(max)" />
+          <Property Name="SoLuongConLai" Type="int" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="tbl_User">
           <Key>
@@ -56,8 +98,11 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="GroceryHomeModelStoreContainer">
+          <EntitySet Name="tbl_DatHang" EntityType="Self.tbl_DatHang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_GioHang" EntityType="Self.tbl_GioHang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_GioHang_SanPham" EntityType="Self.tbl_GioHang_SanPham" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbl_KhachHang" EntityType="Self.tbl_KhachHang" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_LoaiSanPham" EntityType="Self.tbl_LoaiSanPham" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="tbl_Product" EntityType="Self.tbl_Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_SanPham" EntityType="Self.tbl_SanPham" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tbl_User" EntityType="Self.tbl_User" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_tbl_SanPham_tbl_LoaiSanPham" Association="Self.FK_tbl_SanPham_tbl_LoaiSanPham">
@@ -65,8 +110,7 @@
             <End Role="tbl_SanPham" EntitySet="tbl_SanPham" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="GroceryHomeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -77,17 +121,6 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="LoaiSP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="tbl_SanPham" Relationship="Self.FK_tbl_SanPham_tbl_LoaiSanPham" FromRole="tbl_LoaiSanPham" ToRole="tbl_SanPham" />
-        </EntityType>
-        <EntityType Name="tbl_Product">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="TenSP" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="LoaiSP" Type="Int32" Nullable="false" />
-          <Property Name="Mota" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Gia" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="Hinh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="tbl_SanPham">
           <Key>
@@ -100,6 +133,8 @@
           <Property Name="Gia" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="Hinh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="tbl_LoaiSanPham" Relationship="Self.FK_tbl_SanPham_tbl_LoaiSanPham" FromRole="tbl_SanPham" ToRole="tbl_LoaiSanPham" />
+          <Property Name="SoLuongConLai" Type="Int32" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="tbl_User">
           <Key>
@@ -124,14 +159,68 @@
         </Association>
         <EntityContainer Name="GroceryHomeEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="tbl_LoaiSanPham" EntityType="Self.tbl_LoaiSanPham" />
-          <EntitySet Name="tbl_Product" EntityType="Self.tbl_Product" />
           <EntitySet Name="tbl_SanPham" EntityType="Self.tbl_SanPham" />
           <EntitySet Name="tbl_User" EntityType="Self.tbl_User" />
           <AssociationSet Name="FK_tbl_SanPham_tbl_LoaiSanPham" Association="Self.FK_tbl_SanPham_tbl_LoaiSanPham">
             <End Role="tbl_LoaiSanPham" EntitySet="tbl_LoaiSanPham" />
             <End Role="tbl_SanPham" EntitySet="tbl_SanPham" />
           </AssociationSet>
+          <EntitySet Name="tbl_GioHang" EntityType="GroceryHomeModel.tbl_GioHang" />
+          <EntitySet Name="tbl_KhachHang" EntityType="GroceryHomeModel.tbl_KhachHang" />
+          <EntitySet Name="tbl_GioHang_SanPham" EntityType="GroceryHomeModel.tbl_GioHang_SanPham" />
+          <EntitySet Name="tbl_DatHang" EntityType="GroceryHomeModel.tbl_DatHang" />
         </EntityContainer>
+        <EntityType Name="tbl_GioHang">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdKhachHang" Type="Int32" Nullable="false" />
+          <Property Name="NgayTao" Type="DateTime" Precision="3" />
+          <Property Name="IsDelete" Type="Boolean" />
+          <Property Name="IsComplete" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tbl_KhachHang">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="DiaChi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbl_GioHang_SanPham">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdSanPham" Type="Int32" Nullable="false" />
+          <Property Name="IdGioHang" Type="Int32" Nullable="false" />
+          <Property Name="TenSP" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SoLuong" Type="Int32" />
+          <Property Name="DonGia" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ThanhTien" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="NgayThem" Type="DateTime" Precision="3" />
+          <Property Name="IsDelete" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbl_DatHang">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="IdGioHang" Type="Int32" Nullable="false" />
+          <Property Name="IdKhachHang" Type="Int32" Nullable="false" />
+          <Property Name="TenKhachHang" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DiaChi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="NgayDatHang" Type="DateTime" Precision="3" />
+          <Property Name="TongHoaDon" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="NgayXacNhan" Type="DateTime" Precision="3" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -146,21 +235,11 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tbl_Product">
-            <EntityTypeMapping TypeName="GroceryHomeModel.tbl_Product">
-              <MappingFragment StoreEntitySet="tbl_Product">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="TenSP" ColumnName="TenSP" />
-                <ScalarProperty Name="LoaiSP" ColumnName="LoaiSP" />
-                <ScalarProperty Name="Mota" ColumnName="Mota" />
-                <ScalarProperty Name="Gia" ColumnName="Gia" />
-                <ScalarProperty Name="Hinh" ColumnName="Hinh" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tbl_SanPham">
             <EntityTypeMapping TypeName="GroceryHomeModel.tbl_SanPham">
               <MappingFragment StoreEntitySet="tbl_SanPham">
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="SoLuongConLai" ColumnName="SoLuongConLai" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="TenSP" ColumnName="TenSP" />
                 <ScalarProperty Name="LoaiSP" ColumnName="LoaiSP" />
@@ -177,6 +256,61 @@
                 <ScalarProperty Name="FullName" ColumnName="FullName" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="ChucVu" ColumnName="ChucVu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_GioHang">
+            <EntityTypeMapping TypeName="GroceryHomeModel.tbl_GioHang">
+              <MappingFragment StoreEntitySet="tbl_GioHang">
+                <ScalarProperty Name="IsComplete" ColumnName="IsComplete" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+                <ScalarProperty Name="IdKhachHang" ColumnName="IdKhachHang" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_KhachHang">
+            <EntityTypeMapping TypeName="GroceryHomeModel.tbl_KhachHang">
+              <MappingFragment StoreEntitySet="tbl_KhachHang">
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_GioHang_SanPham">
+            <EntityTypeMapping TypeName="GroceryHomeModel.tbl_GioHang_SanPham">
+              <MappingFragment StoreEntitySet="tbl_GioHang_SanPham">
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="NgayThem" ColumnName="NgayThem" />
+                <ScalarProperty Name="ThanhTien" ColumnName="ThanhTien" />
+                <ScalarProperty Name="DonGia" ColumnName="DonGia" />
+                <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+                <ScalarProperty Name="TenSP" ColumnName="TenSP" />
+                <ScalarProperty Name="IdGioHang" ColumnName="IdGioHang" />
+                <ScalarProperty Name="IdSanPham" ColumnName="IdSanPham" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_DatHang">
+            <EntityTypeMapping TypeName="GroceryHomeModel.tbl_DatHang">
+              <MappingFragment StoreEntitySet="tbl_DatHang">
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="NgayXacNhan" ColumnName="NgayXacNhan" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="TongHoaDon" ColumnName="TongHoaDon" />
+                <ScalarProperty Name="NgayDatHang" ColumnName="NgayDatHang" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="TenKhachHang" ColumnName="TenKhachHang" />
+                <ScalarProperty Name="IdKhachHang" ColumnName="IdKhachHang" />
+                <ScalarProperty Name="IdGioHang" ColumnName="IdGioHang" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

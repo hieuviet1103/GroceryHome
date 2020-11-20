@@ -46,11 +46,11 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -211,7 +211,6 @@
     <Compile Include="Areas\DieuHanh\Models\SanPham.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="DBGroceryHome.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -231,14 +230,24 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CustomerLoginStatus.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\QuanLyGioHang.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="tbl_LoaiSanPham.cs">
+    <Compile Include="tbl_DatHang.cs">
       <DependentUpon>DBGroceryHome.tt</DependentUpon>
     </Compile>
-    <Compile Include="tbl_Product.cs">
+    <Compile Include="tbl_GioHang.cs">
+      <DependentUpon>DBGroceryHome.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_GioHang_SanPham.cs">
+      <DependentUpon>DBGroceryHome.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_KhachHang.cs">
+      <DependentUpon>DBGroceryHome.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_LoaiSanPham.cs">
       <DependentUpon>DBGroceryHome.tt</DependentUpon>
     </Compile>
     <Compile Include="tbl_SanPham.cs">
@@ -251,6 +260,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Product\products.css" />
     <Content Include="DBGroceryHome.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DBGroceryHome.edmx</DependentUpon>
@@ -265,6 +275,11 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="fonts\Images\Products\download %281%29.jpg" />
+    <Content Include="fonts\Images\Products\download.jpg" />
+    <Content Include="fonts\Images\Products\images.jpg" />
+    <Content Include="fonts\Images\Products\Screenshot %2810%29.png" />
+    <Content Include="fonts\Images\Products\Tivi.jpg" />
     <Content Include="Images\Products\download %281%29.jpg" />
     <Content Include="Images\Products\download.jpg" />
     <Content Include="Images\Products\images.jpg" />
@@ -295,6 +310,9 @@
     <Content Include="DBGroceryHome.edmx.diagram">
       <DependentUpon>DBGroceryHome.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\DieuHanh\Views\QuanLyDonHang\DonChoDuyet.cshtml" />
+    <Content Include="Areas\DieuHanh\Views\QuanLyDonHang\DonDaHuy.cshtml" />
+    <Content Include="Areas\DieuHanh\Views\QuanLyDonHang\DaXacNhan.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -318,21 +336,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Account\ConfirmEmail.cshtml" />
-    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
-    <Content Include="Views\Account\ForgotPassword.cshtml" />
-    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Account\ResetPassword.cshtml" />
-    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\SendCode.cshtml" />
-    <Content Include="Views\Account\VerifyCode.cshtml" />
     <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
     <Content Include="Views\Manage\ChangePassword.cshtml" />
     <Content Include="Views\Manage\Index.cshtml" />
@@ -341,9 +345,17 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_DanhMucSanPham.cshtml" />
+    <Content Include="Views\Shared\_Products.cshtml" />
+    <Content Include="Views\Account\CustomerLogin.cshtml" />
+    <Content Include="Views\Account\CustomerRegister.cshtml" />
+    <Content Include="Views\Home\GioHang.cshtml" />
+    <Content Include="Views\Home\DonHang.cshtml" />
+    <Content Include="Views\Home\DetailsDonHang.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\DieuHanh\Views\Default\" />
     <Folder Include="Content\Admin\" />
     <Folder Include="Content\images\" />
     <Folder Include="Content\js\" />

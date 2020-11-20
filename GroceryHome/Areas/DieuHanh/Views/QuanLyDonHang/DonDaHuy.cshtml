@@ -1,0 +1,93 @@
+﻿@model List<tbl_DatHang>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/DieuHanh/Views/Shared/_Layout.cshtml";
+    var models = Model;
+}
+
+<h2>Đơn hàng</h2>
+
+<div class="row">
+    <div class="box-body">
+        <table id="mytable" class="table table-bordered table-striped">
+            <thead>
+                <tr style="background-color:#1b7ab8;color:white">
+                    <th class="text-center" width="40px">STT</th>
+                    <th class="text-center">Mã đơn hàng</th>
+                    <th class="text-center">Tên khách hàng</th>
+                    <th class="text-center">Số điện thoại</th>
+                    <th class="text-center">Địa chỉ nhận hàng</th>
+                    <th class="text-center">Ngày đặt hàng</th>
+                    <th class="text-center">Hóa đơn</th>
+                    <th class="text-center">Tình trạng</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{ var STT = 1;}
+                @{
+                    foreach (var item in models)
+                    {
+                        <tr>
+                            <td>@STT</td>
+                            <td>
+                                <a href="#">@item.Id</a>
+                            </td>
+                            <td>@item.TenKhachHang</td>
+                            <td>@item.Phone</td>
+                            <td>@item.DiaChi</td>
+                            <td>@(item.NgayDatHang?.ToString("dd/MM/yyyy - HH:mm"))</td>
+                            <td>@(item.TongHoaDon?.ToString("#,###đ"))</td>
+                            <td>Đã hủy</td>                                                      
+                        </tr>
+                        STT++;
+                        
+                    }
+
+                }
+
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    function Confirm(id) {
+        $.ajax({
+            url: '@Url.Action("ConfirmDonHang","QuanLyDonHang")',
+            data:{
+                id:id
+            },
+            success: function (data) {
+                alert("thành công");
+                location.reload(true);
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                //some errror, some show err msg to user and log the error
+                alert("thất bại");
+
+            }
+
+        });
+       
+    }
+    function Reject(id) {
+        $.ajax({
+            url: '@Url.Action("RejectDonHang","QuanLyDonHang")',
+            data: {
+                id: id
+            },
+            success: function (data) {
+                alert("Hủy thành công");
+                location.reload(true);
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                //some errror, some show err msg to user and log the error
+                alert("thất bại");
+
+            }
+
+        });
+    }
+
+</script>

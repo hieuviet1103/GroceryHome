@@ -2,6 +2,8 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/DieuHanh/Views/Shared/_Layout.cshtml";
+    var dB = new GroceryHomeEntities();
+    var listLoaiSP = dB.tbl_LoaiSanPham.Where(d => d.Id == 0).ToList();
 }
 
 <h2>Sản phẩm</h2>
@@ -11,9 +13,21 @@
         <div class="box box-primary">
             <div class="box-header with-border">
                 <h3 class="box-title">Danh sách sản phẩm hiện tại</h3>
-                <div class="box-tools pull-right">
-                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                </div>
+                @{
+                    using (Html.BeginForm("Index", "QuanLySanPham", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="row">
+                            <div class="col-md-2 form-group">
+                                <label>Loại sản phẩm:</label>
+                                <div>
+                                    @Html.DropDownList("LoaiSP", new SelectList(listLoaiSP, "Id","LoaiSP") , new { @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -24,7 +38,7 @@
                             <th class="text-center">Tên sản phẩm</th>
                             <th class="text-center">Loại sản phẩm</th>
                             <th class="text-center">Ảnh minh họa</th>
-                            <th class="text-center">Mô tả</th class="text-center">
+                            <th class="text-center">Mô tả</th>
                             <th class="text-right">Giá</th>
                             <th>Cập nhật</th>
                             <th>Xóa</th>
@@ -32,34 +46,35 @@
                     </thead>
                     <tbody>
                         @{ var STT = 1; }
-                        @{ 
+                        @{
                             var model = Model;
                             var db = new GroceryHomeEntities();
-                            foreach (var item in  model)
+                            foreach (var item in model)
                             {
                                 <tr class="clickable-row" onclick="RowClick(this)">
                                     <td>@STT</td>
                                     <td>@item.TenSP</td>
                                     <td width="100px">
-                                    @{ 
-                                        var LoaiSP = db.tbl_LoaiSanPham.Find(item.LoaiSP).LoaiSP;
-                                    }
-                                    @LoaiSP
+                                        @{
+                                            var LoaiSP = db.tbl_LoaiSanPham.Find(item.LoaiSP).LoaiSP;
+                                        }
+                                        @LoaiSP
                                     </td>
                                     <td width="250px" height="100px">
                                         <img src="~/Images/Products/@item.Hinh" style="width:inherit" />
                                     </td>
                                     <td>@item.Mota</td>
-                                    <td class="text-right">@string.Format("{0:#,000}đ",item.Gia)</td>
+                                    <td class="text-right">@string.Format("{0:#,000}đ", item.Gia)</td>
                                     <td>
                                         <a href="@Url.Action("CapNhatSP", "QuanLySanPham", new { id = item.Id.ToString() })">Cập nhật</a>
                                     </td>
                                     <td>
-                                        <a target="_blank" href="@Url.Action("XoaSP", "QuanLySanPham", new { id = item.Id.ToString() })">Xoá</a>
+                                        @*<a target="_blank" href="@Url.Action("XoaSP", "QuanLySanPham", new { id = item.Id.ToString() })">Xoá</a>*@
+                                        <a href="" onclick="DeleteProduct(@item.Id)">Xóa</a>
                                     </td>
                                 </tr>
-                                STT++;
-                            }
+                                                STT++;
+                                            }
                         }
 
                     </tbody>
@@ -68,4 +83,23 @@
         </div>
     </div>
 </div>
+
+<script>
+    function DeleteProduct(id) {
+        $.ajax({
+            url: '@Url.Action("Xoa","QuanLySanPham")',
+            data: { id: id },
+            success: function (data) {
+                alert("Xóa sản phẩm thành công");
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                //some errror, some show err msg to user and log the error
+                alert("Xóa sản phẩm thành công");
+
+            }
+
+        });
+    }
+
+</script>
 
